@@ -24,7 +24,7 @@ class ValuesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        click.setOnClickListener {
+        calculateButton.setOnClickListener {
             findNavController().navigate(R.id.action_valuesFragment_to_calculateFragment)
         }
     }

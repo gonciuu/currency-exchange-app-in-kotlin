@@ -1,21 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".screens.ValuesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Values" android:layout_weight="1"/>
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/click"
-        android:layout_height="match_parent"
-        android:text="click me"/>
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"/>
 
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Stawki"
+                android:paddingStart="30dp"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/m_regular"
+                android:textColor="@color/dark_gray"
+                tools:ignore="RtlSymmetry" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oficjalne"
+                android:textSize="20sp"
+                android:layout_marginStart="30dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:drawableBottom="@drawable/ic_back"
+                android:fontFamily="@font/m_regular"
+                android:textColor="@color/dark_gray"/>
+            <EditText
+                android:layout_width="0dp"
+                android:background="#ffffff"
+                android:layout_height="match_parent"
+                android:textAlignment="textEnd"
+                android:drawableEnd="@drawable/ic_back"
+                android:drawablePadding="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/m_regular"
+                android:textColor="@color/dark_gray"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Waluty"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:fontFamily="@font/m_regular"
+                android:textColor="@color/light_gray"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Wartość | 24h"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:fontFamily="@font/m_regular"
+                android:textColor="@color/light_gray"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/calculateButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/abc_vector_test"
+        android:tint="#222"
+        android:layout_margin="20dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
