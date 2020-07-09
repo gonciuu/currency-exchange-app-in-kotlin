@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/valuesFragment">
+
+    <fragment
+        android:id="@+id/valuesFragment"
+        android:name="com.example.walutki.screens.ValuesFragment"
+        android:label="fragment_values"
+        tools:layout="@layout/fragment_values" >
+        <action
+            android:id="@+id/action_valuesFragment_to_calculateFragment"
+            app:destination="@id/calculateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculateFragment"
+        android:name="com.example.walutki.screens.CalculateFragment"
+        android:label="fragment_calculate"
+        tools:layout="@layout/fragment_calculate" >
+        <action
+            android:id="@+id/action_calculateFragment_to_valuesFragment"
+            app:destination="@id/valuesFragment" />
+    </fragment>
+</navigation>
