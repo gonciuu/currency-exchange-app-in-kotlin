@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/valuesFragment">
+    app:startDestination="@id/loadingFragment">
 
     <fragment
         android:id="@+id/valuesFragment"
@@ -21,6 +21,15 @@
         tools:layout="@layout/fragment_calculate" >
         <action
             android:id="@+id/action_calculateFragment_to_valuesFragment"
+            app:destination="@id/valuesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.walutki.screens.LoadingFragment"
+        android:label="loading_fragment"
+        tools:layout="@layout/loading_fragment" >
+        <action
+            android:id="@+id/action_loadingFragment_to_valuesFragment"
             app:destination="@id/valuesFragment" />
     </fragment>
 </navigation>
