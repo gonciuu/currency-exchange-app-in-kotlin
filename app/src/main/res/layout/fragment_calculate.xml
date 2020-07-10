@@ -19,15 +19,15 @@
             android:layout_height="40dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/ic_end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/rounded_rectangle_bg"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/rounded_layout_bg"
             android:backgroundTint="#ffffff">
 
 
@@ -36,7 +36,9 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="52dp"
+                android:layout_marginRight="5dp"
                 android:src="@drawable/dot"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintEnd_toStartOf="@+id/editText"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/dot"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toStartOf="@+id/editText3"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -57,7 +61,12 @@
                 android:id="@+id/imageView3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/dot"
+                android:src="@drawable/ic_back"
+                android:background="@drawable/rounded_rectangle_bg"
+                android:padding="6dp"
+                android:rotation="180"
+                android:tint="@color/green"
+                android:backgroundTint="#DCE8E6"
                 app:layout_constraintBottom_toBottomOf="@+id/spinner1"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -70,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/m_regular"
-
+                android:paddingLeft="5dp"
                 android:maxLength="3"
                 android:text="100"
                 android:textColor="@color/dark_gray"
@@ -86,7 +95,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-
+                android:paddingStart="5dp"
                 android:fontFamily="@font/m_regular"
                 android:maxLength="3"
                 android:text="100"
@@ -106,6 +115,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/editText"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
                 app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginEnd="5dp"
                 app:layout_constraintStart_toEndOf="@+id/editText"
                 app:layout_constraintTop_toTopOf="@+id/editText" />
 
@@ -129,7 +139,7 @@
                 android:fontFamily="@font/m_regular"
                 android:text="13.2610"
                 android:textColor="@color/dark_gray"
-                android:textSize="30sp"
+                android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -143,7 +153,7 @@
                 android:fontFamily="@font/m_regular"
                 android:text="Inne waluty"
                 android:textColor="@color/dark_gray"
-                android:textSize="26sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
