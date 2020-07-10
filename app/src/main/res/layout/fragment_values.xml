@@ -75,6 +75,7 @@
                     android:drawableEnd="@drawable/ic_search"
                     android:drawablePadding="20dp"
                     android:fontFamily="@font/m_regular"
+                    android:maxLines="1"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textAlignment="textEnd"
@@ -116,6 +117,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/currentRecyclerView"
                 android:layout_width="match_parent"
+                android:paddingBottom="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp" />
 
