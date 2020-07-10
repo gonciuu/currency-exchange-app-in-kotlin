@@ -6,121 +6,128 @@
     android:background="@color/white"
     tools:context=".screens.ValuesFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_back"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"/>
-
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Stawki"
-                android:paddingStart="30dp"
-                android:textSize="28sp"
-                android:layout_weight="1"
-                android:fontFamily="@font/m_regular"
-                android:textColor="@color/dark_gray"
-                tools:ignore="RtlSymmetry" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Oficjalne"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:drawableBottom="@drawable/ic_back"
-                android:fontFamily="@font/m_regular"
-                android:textColor="@color/dark_gray"/>
-            <EditText
-                android:layout_width="0dp"
-                android:background="#ffffff"
-                android:layout_height="match_parent"
-                android:textAlignment="textEnd"
-                android:drawableEnd="@drawable/ic_back"
-                android:drawablePadding="20dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textSize="22sp"
-                android:layout_weight="1"
-                android:fontFamily="@font/m_regular"
-                android:textColor="@color/dark_gray"/>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Waluty"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:fontFamily="@font/m_regular"
-                android:textColor="@color/light_gray"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Wartość | 24h"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:layout_marginRight="20dp"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:fontFamily="@font/m_regular"
-                android:textColor="@color/light_gray"/>
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"/>
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_back" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/m_regular"
+                    android:paddingStart="30dp"
+                    android:text="Stawki"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="28sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="30dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:drawableBottom="@drawable/ic_back"
+                    android:fontFamily="@font/m_regular"
+                    android:text="Oficjalne"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#ffffff"
+                    android:drawableEnd="@drawable/ic_back"
+                    android:drawablePadding="20dp"
+                    android:fontFamily="@font/m_regular"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/m_regular"
+                    android:text="Waluty"
+                    android:textAlignment="center"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginRight="40dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/m_regular"
+                    android:text="Wartość | 24h"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/currentRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/calculateButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
         android:src="@drawable/abc_vector_test"
-        android:tint="#222"
-        android:layout_margin="20dp"/>
+        android:tint="#222" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
