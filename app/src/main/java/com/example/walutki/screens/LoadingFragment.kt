@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.net.SocketTimeoutException
 
 class LoadingFragment : Fragment() {
 
@@ -40,19 +41,25 @@ class LoadingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingViewModel = ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
 
+        getCurrencies()
+
+    }
+
+
+    private fun getCurrencies(){
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val result = RetrofitClient.instance.getCurrencyAsync().await().body()
-                Log.d("TAG", result!!.rates.pLN.toString())
+                val result = RetrofitClient.instance.getCurrencyAsync().await().body()!!
                 requireActivity().runOnUiThread {
                     loadingViewModel.setCurrency(result)
                     findNavController().navigate(R.id.action_loadingFragment_to_valuesFragment)
                 }
-            } catch (ex: Exception) {
-                Log.d("TAG", ex.message)
+            }catch (socketEx: SocketTimeoutException){
+                Log.d("Error","Check your internet connection")        //no internet connection
+            }catch (ex:Exception){
+                Log.d("Error","Check your internet connection. Error ${ex.message}")
             }
         }
-
     }
 
 
