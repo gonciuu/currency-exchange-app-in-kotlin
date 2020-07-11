@@ -1,4 +1,4 @@
-package com.example.walutki.screens
+package com.example.walutki.screens.view_models
 
 import androidx.lifecycle.ViewModel
 
