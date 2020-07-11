@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
+    //---------API RETROFIT BUILDER-----------
     val instance: CurrencyService by lazy {
 
         val retrofit = Retrofit.Builder().baseUrl("https://api.exchangeratesapi.io/")
@@ -18,4 +19,5 @@ object RetrofitClient {
         retrofit.create(CurrencyService::class.java)
 
     }
+    //========================================
 }

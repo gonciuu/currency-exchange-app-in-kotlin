@@ -40,11 +40,11 @@ class LoadingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingViewModel = ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
-
         getCurrencies()
-
     }
 
+
+    //---------------------------GET CURRENCY RESPONSE FROM API USING RETROFIT-------------------------------
 
     private fun getCurrencies(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -62,5 +62,6 @@ class LoadingFragment : Fragment() {
         }
     }
 
+    //=========================================================================================================
 
 }

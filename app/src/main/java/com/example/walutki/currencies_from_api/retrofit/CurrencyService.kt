@@ -7,6 +7,7 @@ import retrofit2.http.GET
 
 interface CurrencyService {
 
+    //GET API SHORT URL
     @GET("latest?base=USD")
     fun getCurrencyAsync(): Deferred<Response<Currency>>
 }
