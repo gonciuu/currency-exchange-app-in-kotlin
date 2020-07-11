@@ -17,6 +17,5 @@ object RetrofitClient {
 
         retrofit.create(CurrencyService::class.java)
 
-
     }
 }
