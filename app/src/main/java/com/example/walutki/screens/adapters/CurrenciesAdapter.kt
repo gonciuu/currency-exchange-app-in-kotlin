@@ -20,7 +20,8 @@ class CurrenciesAdapter(private val currencies:HashMap<String,Double>, private v
     }
 
     override fun onBindViewHolder(holder: CurrenciesRecyclerView, position: Int) {
-        
+
+
     }
 }
 
