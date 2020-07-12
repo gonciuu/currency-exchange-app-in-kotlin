@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
-import com.example.walutki.screens.adapters.CurrentiesAdapter
+import com.example.walutki.screens.adapters.CurrenciesAdapter
 import kotlinx.android.synthetic.main.fragment_calculate.*
 
 
@@ -26,7 +26,6 @@ class CalculateFragment : Fragment() {
 
         anotherValuesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrentiesAdapter()
         }
     }
 }

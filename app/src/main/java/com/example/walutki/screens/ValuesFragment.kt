@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
-import com.example.walutki.screens.adapters.CurrentiesAdapter
+import com.example.walutki.screens.adapters.CurrenciesAdapter
 import com.example.walutki.screens.view_models.LoadingViewModel
 import kotlinx.android.synthetic.main.fragment_values.*
 
@@ -40,15 +40,19 @@ class ValuesFragment : Fragment() {
     private fun getCurrencies(){
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             Log.d("ALERT",it["PLN"].toString())
+            setAdapter(it)
         })
-        setAdapter()
     }
 
 
-    private fun setAdapter(){
+    private fun setAdapter(currencies : HashMap<String,Double>){
+        val listOfCurrenciesSymbols = arrayListOf<String>()
+        for(symbol in currencies.keys){
+            listOfCurrenciesSymbols.add(symbol)
+        }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrentiesAdapter()
+            adapter = CurrenciesAdapter(currencies,listOfCurrenciesSymbols)
         }
     }
 
