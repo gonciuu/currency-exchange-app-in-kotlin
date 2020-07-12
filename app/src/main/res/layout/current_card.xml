@@ -14,6 +14,7 @@
 
 
         <ImageView
+            android:id="@+id/countryImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -21,6 +22,7 @@
 
 
         <TextView
+            android:id="@+id/currentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -41,6 +43,7 @@
             android:paddingLeft="10dp">
 
             <TextView
+                android:id="@+id/currentPercent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_light"
@@ -49,6 +52,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/currentValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_regular"
@@ -60,6 +64,7 @@
 
 
         <ImageView
+            android:id="@+id/starImage"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
