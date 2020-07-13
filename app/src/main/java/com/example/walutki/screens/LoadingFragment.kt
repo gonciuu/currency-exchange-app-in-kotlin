@@ -50,7 +50,7 @@ class LoadingFragment : Fragment() {
 
 
     private fun setStartLiked(){
-        val startList = arrayListOf<String>("PLN","EUD","HRK")
+        val startList = arrayListOf<String>("PLN","EUR","HRK")
         val sp = requireActivity().getSharedPreferences("LIKED", Context.MODE_PRIVATE)
         if(sp.getString("likedList","")==""){
             sp.edit().apply {

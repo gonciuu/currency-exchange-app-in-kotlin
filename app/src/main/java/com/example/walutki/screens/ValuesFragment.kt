@@ -47,10 +47,11 @@ class ValuesFragment : Fragment() {
             arleady->
                 loadingViewModel.getLastCurrency().observe(viewLifecycleOwner, Observer {
                     last->
-                    val likedList = Gson().fromJson(requireActivity().getSharedPreferences("LIKED", Context.MODE_PRIVATE).getString("likedList",""),ArrayList::class.java) as ArrayList<String>
+                    val likedList = Gson().fromJson(requireActivity().getSharedPreferences("LIKED", MODE_PRIVATE).getString("likedList",""),ArrayList::class.java) as ArrayList<String>
                     Log.d("ALERT",arleady["PLN"].toString())
+                    Log.d("ALERT",likedList.toString())
                     Log.d("ALERT",last["PLN"].toString())
-                    setAdapter(arleady,last,likedList)
+                    setAdapter(arleady,last,likedList,requireActivity().getSharedPreferences("LIKED", MODE_PRIVATE))
                 })
         })
     }
@@ -58,14 +59,14 @@ class ValuesFragment : Fragment() {
 
 
 
-    private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>,likedList:ArrayList<String>){
+    private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>,likedList:ArrayList<String>,sp:SharedPreferences){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
             listOfCurrenciesSymbols.add(symbol)
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols,likedList)
+            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols,likedList,sp)
         }
     }
 
