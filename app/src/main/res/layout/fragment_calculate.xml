@@ -67,11 +67,11 @@
                 android:rotation="180"
                 android:tint="@color/green"
                 android:backgroundTint="#DCE8E6"
-                app:layout_constraintBottom_toBottomOf="@+id/spinner1"
+                app:layout_constraintBottom_toBottomOf="@+id/firstCurrentSpinner"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/spinner1"
-                app:layout_constraintTop_toTopOf="@+id/spinner1" />
+                app:layout_constraintStart_toEndOf="@+id/firstCurrentSpinner"
+                app:layout_constraintTop_toTopOf="@+id/firstCurrentSpinner" />
 
             <EditText
                 android:id="@+id/editText"
@@ -85,7 +85,7 @@
                 android:textColor="@color/dark_gray"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintEnd_toStartOf="@+id/spinner1"
+                app:layout_constraintEnd_toStartOf="@+id/firstCurrentSpinner"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -102,14 +102,14 @@
                 android:textColor="@color/dark_gray"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintEnd_toStartOf="@+id/spinner"
+                app:layout_constraintEnd_toStartOf="@+id/secondCurrentSpinner"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="@+id/imageView4"
                 app:layout_constraintVertical_bias="0.555" />
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/firstCurrentSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/editText"
@@ -121,7 +121,7 @@
 
             <Spinner
 
-                android:id="@+id/spinner"
+                android:id="@+id/secondCurrentSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/editText3"
