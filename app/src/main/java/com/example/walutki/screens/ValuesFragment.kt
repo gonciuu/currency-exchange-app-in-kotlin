@@ -40,13 +40,12 @@ class ValuesFragment : Fragment() {
     private fun getCurrencies(){
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             arleady->
-            loadingViewModel.getLastCurrency().observe(viewLifecycleOwner, Observer {
-                last->
-                Log.d("ALERT",arleady["PLN"].toString())
-                Log.d("ALERT",last["PLN"].toString())
-                setAdapter(arleady,last)
-            })
-
+                loadingViewModel.getLastCurrency().observe(viewLifecycleOwner, Observer {
+                    last->
+                    Log.d("ALERT",arleady["PLN"].toString())
+                    Log.d("ALERT",last["PLN"].toString())
+                    setAdapter(arleady,last)
+                })
         })
     }
 

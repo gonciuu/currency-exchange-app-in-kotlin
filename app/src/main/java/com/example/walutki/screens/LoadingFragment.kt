@@ -1,12 +1,12 @@
 package com.example.walutki.screens
 
-import androidx.lifecycle.ViewModelProviders
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.walutki.R
@@ -15,8 +15,10 @@ import com.example.walutki.screens.view_models.LoadingViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.net.SocketTimeoutException
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoadingFragment : Fragment() {
 
@@ -47,10 +49,14 @@ class LoadingFragment : Fragment() {
     //---------------------------GET CURRENCY RESPONSE FROM API USING RETROFIT-------------------------------
 
     private fun getCurrencies(){
+
+
+        Log.d("ALERT",getYesterday())
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val result = RetrofitClient.instance.getCurrencyAsync().await().body()!!
-                val lastChangeResult = RetrofitClient.instance.getCurrencyHistoryAsync("2020-07-6").await().body()!!
+                val lastChangeResult = RetrofitClient.instance.getCurrencyHistoryAsync(getYesterday()).await().body()!!
                 requireActivity().runOnUiThread {
                     loadingViewModel.setCurrency(result)
                     loadingViewModel.setLastCurrency(lastChangeResult)
@@ -66,4 +72,12 @@ class LoadingFragment : Fragment() {
 
     //=========================================================================================================
 
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getYesterday() : String{
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val cal: Calendar = Calendar.getInstance()
+        cal.add(Calendar.DATE, - 1)
+        return dateFormat.format(cal.time)
+    }
 }
