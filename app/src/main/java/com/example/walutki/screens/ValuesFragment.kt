@@ -66,7 +66,7 @@ class ValuesFragment : Fragment() {
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols,likedList,sp)
+            adapter = CurrenciesAdapter(context,currencies,lastCurrencies,listOfCurrenciesSymbols,likedList,sp)
         }
     }
 
