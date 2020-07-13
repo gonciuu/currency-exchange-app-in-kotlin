@@ -12,7 +12,7 @@ import com.example.walutki.R
 import com.squareup.picasso.Picasso
 import kotlin.math.abs
 
-class CurrenciesAdapter(private val currencies:HashMap<String,Double>,private val lastCurrencies:HashMap<String,Double>, private val listOfCurrenciesSymbols:ArrayList<String>) : RecyclerView.Adapter<CurrenciesViewHolder>() {
+class CurrenciesAdapter(private val currencies:HashMap<String,Double>,private val lastCurrencies:HashMap<String,Double>, private val listOfCurrenciesSymbols:ArrayList<String>,likedList:ArrayList<String>) : RecyclerView.Adapter<CurrenciesViewHolder>() {
 
 
 

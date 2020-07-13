@@ -1,5 +1,8 @@
 package com.example.walutki.screens
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
 import com.example.walutki.screens.adapters.CurrenciesAdapter
 import com.example.walutki.screens.view_models.LoadingViewModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_values.*
 
 
@@ -42,9 +47,10 @@ class ValuesFragment : Fragment() {
             arleady->
                 loadingViewModel.getLastCurrency().observe(viewLifecycleOwner, Observer {
                     last->
+                    val likedList = Gson().fromJson(requireActivity().getSharedPreferences("LIKED", Context.MODE_PRIVATE).getString("likedList",""),ArrayList::class.java) as ArrayList<String>
                     Log.d("ALERT",arleady["PLN"].toString())
                     Log.d("ALERT",last["PLN"].toString())
-                    setAdapter(arleady,last)
+                    setAdapter(arleady,last,likedList)
                 })
         })
     }
@@ -52,14 +58,14 @@ class ValuesFragment : Fragment() {
 
 
 
-    private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>){
+    private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>,likedList:ArrayList<String>){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
             listOfCurrenciesSymbols.add(symbol)
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols)
+            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols,likedList)
         }
     }
 

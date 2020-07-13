@@ -1,6 +1,7 @@
 package com.example.walutki.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.walutki.R
 import com.example.walutki.currencies_from_api.retrofit.RetrofitClient
 import com.example.walutki.screens.view_models.LoadingViewModel
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,17 +44,25 @@ class LoadingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingViewModel = ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
+        setStartLiked()
         getCurrencies()
     }
 
 
+    private fun setStartLiked(){
+        val startList = arrayListOf<String>("PLN","EUD","HRK")
+        val sp = requireActivity().getSharedPreferences("LIKED", Context.MODE_PRIVATE)
+        if(sp.getString("likedList","")==""){
+            sp.edit().apply {
+                putString("likedList", Gson().toJson(startList))
+                apply()
+            }
+        }
+    }
+
     //---------------------------GET CURRENCY RESPONSE FROM API USING RETROFIT-------------------------------
 
     private fun getCurrencies(){
-
-
-        Log.d("ALERT",getYesterday())
-
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val result = RetrofitClient.instance.getCurrencyAsync().await().body()!!
