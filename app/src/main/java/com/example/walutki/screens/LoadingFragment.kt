@@ -50,8 +50,10 @@ class LoadingFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val result = RetrofitClient.instance.getCurrencyAsync().await().body()!!
+                val lastChangeResult = RetrofitClient.instance.getCurrencyHistoryAsync("2020-07-6").await().body()!!
                 requireActivity().runOnUiThread {
                     loadingViewModel.setCurrency(result)
+                    loadingViewModel.setLastCurrency(lastChangeResult)
                     findNavController().navigate(R.id.action_loadingFragment_to_valuesFragment)
                 }
             }catch (socketEx: SocketTimeoutException){

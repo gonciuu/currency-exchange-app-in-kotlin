@@ -7,6 +7,7 @@ import com.example.walutki.currencies_from_api.obj_class.Currency
 
 class LoadingViewModel : ViewModel() {
     private val currency = MutableLiveData<HashMap<String,Double>>()
+    private val lastCurrency = MutableLiveData<HashMap<String,Double>>()
 
     fun setCurrency(userCurrency: Currency){
         currency.value = setCurrencies(userCurrency)
@@ -29,4 +30,14 @@ class LoadingViewModel : ViewModel() {
         map["CZK"] = userCurrency.rates.cZK //korona czeska
         return  map
     }
+
+
+
+    fun setLastCurrency(userCurrency: Currency){
+        lastCurrency.value = setCurrencies(userCurrency)
+    }
+
+    fun getLastCurrency() :LiveData<HashMap<String,Double>> = lastCurrency
+
+
 }

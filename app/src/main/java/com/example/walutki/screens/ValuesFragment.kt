@@ -39,20 +39,28 @@ class ValuesFragment : Fragment() {
 
     private fun getCurrencies(){
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
-            Log.d("ALERT",it["PLN"].toString())
-            setAdapter(it)
+            arleady->
+            loadingViewModel.getLastCurrency().observe(viewLifecycleOwner, Observer {
+                last->
+                Log.d("ALERT",arleady["PLN"].toString())
+                Log.d("ALERT",last["PLN"].toString())
+                setAdapter(arleady,last)
+            })
+
         })
     }
 
 
-    private fun setAdapter(currencies : HashMap<String,Double>){
+
+
+    private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
             listOfCurrenciesSymbols.add(symbol)
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrenciesAdapter(currencies,listOfCurrenciesSymbols)
+            adapter = CurrenciesAdapter(currencies,lastCurrencies,listOfCurrenciesSymbols)
         }
     }
 
