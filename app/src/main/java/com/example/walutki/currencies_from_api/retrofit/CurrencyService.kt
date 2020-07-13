@@ -12,7 +12,7 @@ interface CurrencyService {
     @GET("latest?base=USD")
     fun getCurrencyAsync(): Deferred<Response<Currency>>
 
-    //GET API SHORT URL
+    //GET YESTERDAY API SHORT URL
     @GET("{date}?base=USD")
     fun getCurrencyHistoryAsync(@Path("date") date:String): Deferred<Response<Currency>>
 }

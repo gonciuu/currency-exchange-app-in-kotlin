@@ -42,6 +42,7 @@ class ValuesFragment : Fragment() {
     }
 
 
+    //-------------------------------------GET CURRENCIES FROM VIEWMODEL AND LIKED CURRENCIES FROM HARED PREFS--------------------------------------
     private fun getCurrencies(){
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             arleady->
@@ -55,19 +56,23 @@ class ValuesFragment : Fragment() {
                 })
         })
     }
+    //===============================================================================================================================================
 
 
 
 
+
+    //-------------------------------------------------------SET ADAPTER ON RECYCLER VIEW-----------------------------------------------------------
     private fun setAdapter(currencies : HashMap<String,Double>,lastCurrencies : HashMap<String,Double>,likedList:ArrayList<String>,sp:SharedPreferences){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
-            listOfCurrenciesSymbols.add(symbol)
+            listOfCurrenciesSymbols.add(symbol)     //GET ALL CURRENCIES SYMBOLS
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = CurrenciesAdapter(context,currencies,lastCurrencies,listOfCurrenciesSymbols,likedList,sp)
         }
     }
+    //===============================================================================================================================================
 
 }

@@ -49,6 +49,7 @@ class LoadingFragment : Fragment() {
     }
 
 
+    //--------------------IF LIST OF LIKED NOT CONTAINS IN SHARED PREFS SET DEFAULT LIKED CURRENCIES------------------
     private fun setStartLiked(){
         val startList = arrayListOf<String>("PLN","EUR","HRK")
         val sp = requireActivity().getSharedPreferences("LIKED", Context.MODE_PRIVATE)
@@ -59,6 +60,7 @@ class LoadingFragment : Fragment() {
             }
         }
     }
+    //================================================================================================================
 
     //---------------------------GET CURRENCY RESPONSE FROM API USING RETROFIT-------------------------------
 
@@ -68,8 +70,8 @@ class LoadingFragment : Fragment() {
                 val result = RetrofitClient.instance.getCurrencyAsync().await().body()!!
                 val lastChangeResult = RetrofitClient.instance.getCurrencyHistoryAsync(getYesterday()).await().body()!!
                 requireActivity().runOnUiThread {
-                    loadingViewModel.setCurrency(result)
-                    loadingViewModel.setLastCurrency(lastChangeResult)
+                    loadingViewModel.setCurrency(result)//today
+                    loadingViewModel.setLastCurrency(lastChangeResult)//yesterday
                     findNavController().navigate(R.id.action_loadingFragment_to_valuesFragment)
                 }
             }catch (socketEx: SocketTimeoutException){
@@ -83,6 +85,7 @@ class LoadingFragment : Fragment() {
     //=========================================================================================================
 
 
+    //-------------------GET YESTERDAY DATE AS STRING---------------------
     @SuppressLint("SimpleDateFormat")
     private fun getYesterday() : String{
         val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -90,4 +93,5 @@ class LoadingFragment : Fragment() {
         cal.add(Calendar.DATE, - 1)
         return dateFormat.format(cal.time)
     }
+    //====================================================================
 }

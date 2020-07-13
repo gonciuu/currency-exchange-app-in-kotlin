@@ -17,8 +17,12 @@ import com.squareup.picasso.Picasso
 import kotlin.math.abs
 
 
-class CurrenciesAdapter(private val context: Context,private val currencies:HashMap<String,Double>,private val lastCurrencies:HashMap<String,Double>, private val listOfCurrenciesSymbols:ArrayList<String>,private val likedList:ArrayList<String>,private val sp:SharedPreferences) : RecyclerView.Adapter<CurrenciesViewHolder>() {
-
+class CurrenciesAdapter(private val context: Context,
+                        private val currencies:HashMap<String,Double>,
+                        private val lastCurrencies:HashMap<String,Double>,
+                        private val listOfCurrenciesSymbols:ArrayList<String>,
+                        private val likedList:ArrayList<String>,
+                        private val sp:SharedPreferences) : RecyclerView.Adapter<CurrenciesViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrenciesViewHolder {
@@ -31,9 +35,12 @@ class CurrenciesAdapter(private val context: Context,private val currencies:Hash
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CurrenciesViewHolder, position: Int) {
+
         holder.currentName.text = listOfCurrenciesSymbols[holder.adapterPosition]
         holder.currentValue.text  = String.format("%.4f",currencies[listOfCurrenciesSymbols[holder.adapterPosition]])
         Picasso.get().load("https://www.countryflags.io/${listOfCurrenciesSymbols[holder.adapterPosition][0] + "" + listOfCurrenciesSymbols[holder.adapterPosition][1]}/flat/64.png").into(holder.countryImage)
+
+        //---------------------------SHOW PERCENT DIFFERENT BETWEEN TODAY AND YESTERDAY DATA-----------------------------
 
         val different = 100 - (lastCurrencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! * 100) / (currencies[listOfCurrenciesSymbols[holder.adapterPosition]]!!)
         when {
@@ -43,10 +50,17 @@ class CurrenciesAdapter(private val context: Context,private val currencies:Hash
         }
         holder.currentPercent.text = String.format("%.2f", abs(different)) + "%"
 
+        //================================================================================================================
+
+        //-----------------------------SET START SYMBOLS BASED ON LIKED LIST FROM SHARED PREFS-----------------------------
+
         if(likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])){ holder.starIcon.setImageResource(R.drawable.ic_star) }
         else{ holder.starIcon.setImageResource(R.drawable.ic_star_border) }
 
-        holder.starIcon.setOnClickListener {
+        //=================================================================================================================
+
+        //----------------------------------CHANGE STAR ICON ON CLICK AND SAVE NEW LIST IN SHARED PREFS------------------------------
+        holder.starIcon.setOnClickListener{
             if(likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])){
                 imageViewAnimatedChange(context,holder.starIcon,R.drawable.ic_star_border)
                 likedList.remove(listOfCurrenciesSymbols[holder.adapterPosition])
@@ -59,9 +73,13 @@ class CurrenciesAdapter(private val context: Context,private val currencies:Hash
                 apply()
             }
         }
+        //============================================================================================================================
 
     }
 
+
+
+    //---------------------FADE IN - FADE OUT ANIMATION ON IMAGE VIEW-------------------------
     private fun imageViewAnimatedChange(c: Context?, v: ImageView, new_image: Int) {
         val animOut: Animation = AnimationUtils.loadAnimation(c, android.R.anim.fade_out)
         val animIn: Animation = AnimationUtils.loadAnimation(c, android.R.anim.fade_in)
@@ -80,6 +98,7 @@ class CurrenciesAdapter(private val context: Context,private val currencies:Hash
         })
         v.startAnimation(animOut)
     }
+    //========================================================================================
 }
 
 
