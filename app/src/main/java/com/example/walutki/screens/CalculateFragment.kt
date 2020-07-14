@@ -48,40 +48,43 @@ class CalculateFragment : Fragment() {
     }
 
 
+    //-------------------------------BACK TO PREVIOUS DESTINATION ON BUTTON CLICK-------------------------------
     private fun setBackButton() = goBackButton.setOnClickListener { findNavController().navigate(R.id.action_calculateFragment_to_valuesFragment)}
+    //==========================================================================================================
 
 
+    //--------------------------------------------GET CURRENCIES AS HASHMAP FROM LOADING VIEWMODEL----------------------------------------
     private fun getCurrencies() {
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             setSpinners(it)
             calculateOnTextChange(it)
         })
     }
+    //=====================================================================================================================================
 
 
+    //-------------------------------SET ADAPTER ON SPINNERS-----------------------------------
     private fun setSpinners(currencies: HashMap<String, Double>) {
-        val firstCurrentAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
-            currencies.keys.toList()
-        )
+        val firstCurrentAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, currencies.keys.toList())
         firstCurrentSpinner.adapter = firstCurrentAdapter
-
         val secondCurrentAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, currencies.keys.toList())
         secondCurrentSpinner.adapter = secondCurrentAdapter
-
         setSpinnersOnClick(currencies)
     }
+    //==========================================================================================
 
+
+
+    //-----------------------------------------SET ON SELECT ITEM ON SPINNER---------------------------------------------
 
     private fun setSpinnersOnClick(currencies: HashMap<String, Double>) {
         firstCurrentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                setFlagImage(selectedItem, firstCurrentFlag)
-                setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)
-                calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })
-                setCurrenciesAdapter(currencies,currencies[selectedItem]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })
+                setFlagImage(selectedItem, firstCurrentFlag)//set flag image next to spinner
+                setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)      //calculate currenct global value
+                calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })   //calculate specific currency quantity to currency
+                setCurrenciesAdapter(currencies,currencies[selectedItem]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })      //calculate specific currency quantity to currencies in recycer view
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -97,17 +100,25 @@ class CalculateFragment : Fragment() {
         }
     }
 
+    //=====================================================================================================================
+
+
+    //-----------------------------SET FLAG IMAGE OF SETS CURRENCY IN SPINNER---------------------------------------
 
     private fun setFlagImage(countryCode: String, imageView: ImageView) = Picasso.get()
         .load("https://www.countryflags.io/${countryCode[0] + "" + countryCode[1]}/flat/64.png")
         .fit().centerCrop().into(imageView)
 
+    //==============================================================================================================
 
+    //----------------------------------------------SET ACTUAL DATE UNDER CURRENCY VALUE-------------------------------------------
     private fun setDate(){
         dateTV.text =  SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).format(Calendar.getInstance().timeInMillis)
     }
+    //=============================================================================================================================
 
 
+    //----------------------------------------SET GLOBAL CURRENCY VALUE IN TEXTVIEW-----------------------------------------
     private fun setCurrentValue(firstSpinnerValue:Double,secondSpinnerValue:Double){
         try{
             currentValue.text = String.format("%.4f",secondSpinnerValue / firstSpinnerValue)
@@ -115,8 +126,10 @@ class CalculateFragment : Fragment() {
             Toast.makeText(context,"Number format exception handled",Toast.LENGTH_LONG).show()
         }catch (ex:Exception){ }
     }
+    //=======================================================================================================================
 
 
+    //-------------------------------------CALCULATE SPECIFIC CURRENCY ON TEXT CHANGE IN CURRENCY-----------------------------------------------
     private fun calculateOnTextChange(currencies: HashMap<String, Double>){
         firstCurrentValue.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
@@ -134,7 +147,10 @@ class CalculateFragment : Fragment() {
             }
         })
     }
+    //===========================================================================================================================================
 
+
+    //------------------------------CALCULATE SPECIFIC CURRENCIES FUNCTION------------------------------------------
 
     private fun calculateCurrencies(firstSpinnerValue:Double,secondSpinnerValue:Double,quantity:Int){
         try{
@@ -145,7 +161,10 @@ class CalculateFragment : Fragment() {
         }
     }
 
+    //===============================================================================================================
 
+
+    //------------------------------------SET ADATER ON SPECIFIC CURRENCIES RECYCLER VIEW------------------------------------
     private fun setCurrenciesAdapter(currencies: HashMap<String, Double>,firstSpinnerValue:Double,quantity:Int){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
@@ -156,6 +175,7 @@ class CalculateFragment : Fragment() {
             adapter = CalculateCurrenciesAdapter(currencies,listOfCurrenciesSymbols,firstSpinnerValue,quantity)
         }
     }
+    //=======================================================================================================================
 
 
 }
