@@ -80,7 +80,7 @@
                 android:fontFamily="@font/m_regular"
                 android:paddingLeft="5dp"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="6"
                 android:hint="100"
                 android:maxLines="1"
                 android:textColor="@color/dark_gray"

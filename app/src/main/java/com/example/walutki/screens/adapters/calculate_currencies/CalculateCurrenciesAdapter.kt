@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.walutki.R
 import com.squareup.picasso.Picasso
 
-class CalculateCurrenciesAdapter(private val currencies: HashMap<String, Double>, private val listOfCurrenciesSymbols: ArrayList<String>) : RecyclerView.Adapter<CalculateCurrenciesViewHolder>() {
+class CalculateCurrenciesAdapter(private val currencies: HashMap<String, Double>, private val listOfCurrenciesSymbols: ArrayList<String>,private val currencyValue:Double,private val quantity:Int) : RecyclerView.Adapter<CalculateCurrenciesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalculateCurrenciesViewHolder {
         return CalculateCurrenciesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.current_card, parent, false))
     }
@@ -22,7 +22,7 @@ class CalculateCurrenciesAdapter(private val currencies: HashMap<String, Double>
         holder.currentValue.textSize = 22.5f
 
         holder.currentName.text = listOfCurrenciesSymbols[holder.adapterPosition]
-        holder.currentValue.text = String.format("%.4f",currencies[listOfCurrenciesSymbols[holder.adapterPosition]])
+        holder.currentValue.text = String.format("%.4f",(currencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! / currencyValue) * quantity)
         Picasso.get().load("https://www.countryflags.io/${listOfCurrenciesSymbols[holder.adapterPosition][0] + "" + listOfCurrenciesSymbols[holder.adapterPosition][1]}/flat/64.png").into(holder.countryImage)
     }
 }

@@ -40,14 +40,13 @@ class CalculateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingViewModel = ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
-
+        finalValue.isSelected = true
         getCurrencies()
         setDate()
     }
 
 
     private fun getCurrencies() {
-        finalValue.isSelected = true
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             setSpinners(it)
             calculateOnTextChange(it)
@@ -77,7 +76,7 @@ class CalculateFragment : Fragment() {
                 setFlagImage(selectedItem, firstCurrentFlag)
                 setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)
                 calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })
-                setCurrenciesAdapter(currencies)
+                setCurrenciesAdapter(currencies,currencies[selectedItem]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -87,7 +86,7 @@ class CalculateFragment : Fragment() {
                 setFlagImage(selectedItem, secondCurrentFlag)
                 setCurrentValue(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!)
                 calculateCurrencies(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!,try{firstCurrentValue.text.toString().toInt()}catch (ex:Exception){0})
-                setCurrenciesAdapter(currencies)
+                setCurrenciesAdapter(currencies,currencies[firstCurrentSpinner.selectedItem.toString()]!!,try{firstCurrentValue.text.toString().toInt()}catch (ex:Exception){0})
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -121,7 +120,7 @@ class CalculateFragment : Fragment() {
                 }catch (ex:Exception){
                     0
                 })
-                setCurrenciesAdapter(currencies)
+                setCurrenciesAdapter(currencies,currencies[firstCurrentSpinner.selectedItem.toString()]!!,try{firstCurrentValue.text.toString().toInt()}catch (ex:Exception){0})
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -142,14 +141,14 @@ class CalculateFragment : Fragment() {
     }
 
 
-    private fun setCurrenciesAdapter(currencies: HashMap<String, Double>){
+    private fun setCurrenciesAdapter(currencies: HashMap<String, Double>,firstSpinnerValue:Double,quantity:Int){
         val listOfCurrenciesSymbols = arrayListOf<String>()
         for(symbol in currencies.keys){
             listOfCurrenciesSymbols.add(symbol)     //GET ALL CURRENCIES SYMBOLS
         }
         calculateRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CalculateCurrenciesAdapter(currencies,listOfCurrenciesSymbols)
+            adapter = CalculateCurrenciesAdapter(currencies,listOfCurrenciesSymbols,firstSpinnerValue,quantity)
         }
     }
 
