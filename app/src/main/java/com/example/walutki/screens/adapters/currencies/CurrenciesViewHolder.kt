@@ -1,4 +1,4 @@
-package com.example.walutki.screens.adapters
+package com.example.walutki.screens.adapters.currencies
 
 import android.view.View
 import android.widget.ImageView

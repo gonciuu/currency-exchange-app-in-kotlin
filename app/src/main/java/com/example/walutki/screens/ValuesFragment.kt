@@ -1,6 +1,5 @@
 package com.example.walutki.screens
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -14,10 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
-import com.example.walutki.screens.adapters.CurrenciesAdapter
+import com.example.walutki.screens.adapters.currencies.CurrenciesAdapter
 import com.example.walutki.screens.view_models.LoadingViewModel
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_values.*
 
 
@@ -70,7 +68,15 @@ class ValuesFragment : Fragment() {
         }
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CurrenciesAdapter(context,currencies,lastCurrencies,listOfCurrenciesSymbols,likedList,sp)
+            adapter =
+                CurrenciesAdapter(
+                    context,
+                    currencies,
+                    lastCurrencies,
+                    listOfCurrenciesSymbols,
+                    likedList,
+                    sp
+                )
         }
     }
     //===============================================================================================================================================

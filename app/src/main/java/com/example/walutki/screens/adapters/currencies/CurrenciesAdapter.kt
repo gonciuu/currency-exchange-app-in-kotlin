@@ -1,4 +1,4 @@
-package com.example.walutki.screens.adapters
+package com.example.walutki.screens.adapters.currencies
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -26,7 +26,9 @@ class CurrenciesAdapter(private val context: Context,
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrenciesViewHolder {
-        return CurrenciesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.current_card,parent,false))
+        return CurrenciesViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.current_card, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {

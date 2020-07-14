@@ -3,7 +3,6 @@ package com.example.walutki.screens
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
+import com.example.walutki.screens.adapters.calculate_currencies.CalculateCurrenciesAdapter
 import com.example.walutki.screens.view_models.LoadingViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_calculate.*
@@ -42,7 +42,7 @@ class CalculateFragment : Fragment() {
 
         getCurrencies()
         setDate()
-
+        setCurrenciesAdapter()
     }
 
 
@@ -141,6 +141,14 @@ class CalculateFragment : Fragment() {
             finalValue.text = value
         }catch (NbEx:NumberFormatException){
             Toast.makeText(context,"Wrong text in field",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun setCurrenciesAdapter(){
+        calculateRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = CalculateCurrenciesAdapter()
         }
     }
 
