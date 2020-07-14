@@ -3,11 +3,15 @@ package com.example.walutki.screens
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,11 +21,8 @@ import com.example.walutki.screens.adapters.calculate_currencies.CalculateCurren
 import com.example.walutki.screens.view_models.LoadingViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_calculate.*
-import java.lang.Exception
-import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class CalculateFragment : Fragment() {
@@ -46,6 +47,7 @@ class CalculateFragment : Fragment() {
 
 
     private fun getCurrencies() {
+        finalValue.isSelected = true
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             setSpinners(it)
             calculateOnTextChange(it)
