@@ -1,6 +1,8 @@
 package com.example.walutki.screens
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import com.example.walutki.R
 import com.example.walutki.screens.view_models.LoadingViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_calculate.*
+import java.lang.Exception
 import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -46,6 +49,7 @@ class CalculateFragment : Fragment() {
     private fun getCurrencies() {
         loadingViewModel.getCurrency().observe(viewLifecycleOwner, Observer {
             setSpinners(it)
+            calculateOnTextChange(it)
         })
     }
 
@@ -71,6 +75,11 @@ class CalculateFragment : Fragment() {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setFlagImage(selectedItem, firstCurrentFlag)
                 setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)
+                calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try {
+                    firstCurrentValue.text.toString().toInt()
+                }catch (ex:Exception){
+                 0
+                })
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -80,6 +89,7 @@ class CalculateFragment : Fragment() {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setFlagImage(selectedItem, secondCurrentFlag)
                 setCurrentValue(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!)
+                calculateCurrencies(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!,try{firstCurrentValue.text.toString().toInt()}catch (ex:Exception){0})
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -100,8 +110,37 @@ class CalculateFragment : Fragment() {
     private fun setCurrentValue(firstSpinnerValue:Double,secondSpinnerValue:Double){
         try{
             currentValue.text = String.format("%.4f",secondSpinnerValue / firstSpinnerValue)
-        }catch (nbEx:NumberFormatException){
-            Toast.makeText(context,"Number firmat exception handled",Toast.LENGTH_LONG).show()
+        }catch (nbEx:java.lang.NumberFormatException){
+            Toast.makeText(context,"Number format exception handled",Toast.LENGTH_LONG).show()
+        }catch (ex:Exception){ }
+    }
+
+
+    private fun calculateOnTextChange(currencies: HashMap<String, Double>){
+        firstCurrentValue.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                calculateCurrencies(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try {
+                    firstCurrentValue.text.toString().toInt()
+                }catch (ex:Exception){
+                    0
+                })
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
+
+    private fun calculateCurrencies(firstSpinnerValue:Double,secondSpinnerValue:Double,quantity:Int){
+        try{
+            val value= String.format("%.1f",(secondSpinnerValue / firstSpinnerValue) * quantity)
+            finalValue.text = value
+        }catch (NbEx:NumberFormatException){
+            Toast.makeText(context,"Wrong text in field",Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -50,7 +50,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintEnd_toStartOf="@+id/secondCurrentValue"
+                app:layout_constraintEnd_toStartOf="@+id/finalValue"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -92,13 +92,12 @@
                 app:layout_constraintTop_toTopOf="@+id/firstCurrentFlag" />
 
             <TextView
-                android:id="@+id/secondCurrentValue"
+                android:id="@+id/finalValue"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:paddingStart="5dp"
                 android:fontFamily="@font/m_regular"
-                android:maxLength="4"
                 android:hint="100"
                 android:textColor="@color/dark_gray"
                 android:maxLines="1"
@@ -108,8 +107,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/secondCurrentFlag"
                 app:layout_constraintTop_toTopOf="@+id/secondCurrentFlag"
-                app:layout_constraintVertical_bias="0.555"
-                tools:ignore="RtlSymmetry" />
+                app:layout_constraintVertical_bias="0.555" />
 
             <Spinner
                 android:id="@+id/firstCurrentSpinner"
@@ -127,11 +125,11 @@
                 android:id="@+id/secondCurrentSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/secondCurrentValue"
+                app:layout_constraintBottom_toBottomOf="@+id/finalValue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/secondCurrentValue"
-                app:layout_constraintTop_toTopOf="@+id/secondCurrentValue"
+                app:layout_constraintStart_toEndOf="@+id/finalValue"
+                app:layout_constraintTop_toTopOf="@+id/finalValue"
                 app:layout_constraintVertical_bias="0.428" />
 
             <TextView
