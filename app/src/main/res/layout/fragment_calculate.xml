@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="32dp"
             android:src="@drawable/ic_end"
@@ -79,8 +79,10 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/m_regular"
                 android:paddingLeft="5dp"
-                android:maxLength="3"
-                android:text="100"
+                android:inputType="number"
+                android:maxLength="4"
+                android:hint="100"
+                android:maxLines="1"
                 android:textColor="@color/dark_gray"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/firstCurrentFlag"
@@ -89,23 +91,25 @@
                 app:layout_constraintStart_toEndOf="@+id/firstCurrentFlag"
                 app:layout_constraintTop_toTopOf="@+id/firstCurrentFlag" />
 
-            <EditText
+            <TextView
                 android:id="@+id/secondCurrentValue"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:paddingStart="5dp"
                 android:fontFamily="@font/m_regular"
-                android:maxLength="3"
-                android:text="100"
+                android:maxLength="4"
+                android:hint="100"
                 android:textColor="@color/dark_gray"
+                android:maxLines="1"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/secondCurrentFlag"
                 app:layout_constraintEnd_toStartOf="@+id/secondCurrentSpinner"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/secondCurrentFlag"
                 app:layout_constraintTop_toTopOf="@+id/secondCurrentFlag"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintVertical_bias="0.555"
+                tools:ignore="RtlSymmetry" />
 
             <Spinner
                 android:id="@+id/firstCurrentSpinner"
@@ -131,7 +135,7 @@
                 app:layout_constraintVertical_bias="0.428" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/currentValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -154,10 +158,10 @@
                 android:textColor="@color/dark_gray"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/dateTV" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/dateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_regular"
@@ -166,7 +170,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/currentValue" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/anotherValuesRecyclerView"
