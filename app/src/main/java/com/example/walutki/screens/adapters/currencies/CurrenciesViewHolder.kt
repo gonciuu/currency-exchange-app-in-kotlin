@@ -5,13 +5,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.walutki.R
+import kotlinx.android.synthetic.main.current_card.view.*
 
 class CurrenciesViewHolder(v: View): RecyclerView.ViewHolder(v){
 
-    val currentName = v.findViewById<TextView>(R.id.currentName)!!
-    val currentPercent = v.findViewById<TextView>(R.id.currentPercent)!!
-    val currentValue = v.findViewById<TextView>(R.id.currentValue)!!
-    val countryImage = v.findViewById<ImageView>(R.id.countryImage)!!
-    val starIcon = v.findViewById<ImageView>(R.id.starImage)!!
+    val currentName = v.currentName!!
+    val currentPercent = v.currentPercent!!
+    val currentValue = v.currentValue!!
+    val countryImage = v.countryImage!!
+    val starIcon = v.starImage!!
 
 }

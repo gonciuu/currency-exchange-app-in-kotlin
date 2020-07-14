@@ -42,7 +42,6 @@ class CalculateFragment : Fragment() {
 
         getCurrencies()
         setDate()
-        setCurrenciesAdapter()
     }
 
 
@@ -75,13 +74,9 @@ class CalculateFragment : Fragment() {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setFlagImage(selectedItem, firstCurrentFlag)
                 setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)
-                calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try {
-                    firstCurrentValue.text.toString().toInt()
-                }catch (ex:Exception){
-                 0
-                })
+                calculateCurrencies(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!,try { firstCurrentValue.text.toString().toInt() }catch (ex:Exception){ 0 })
+                setCurrenciesAdapter(currencies)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         secondCurrentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
@@ -90,8 +85,8 @@ class CalculateFragment : Fragment() {
                 setFlagImage(selectedItem, secondCurrentFlag)
                 setCurrentValue(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!)
                 calculateCurrencies(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!,try{firstCurrentValue.text.toString().toInt()}catch (ex:Exception){0})
+                setCurrenciesAdapter(currencies)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
@@ -124,8 +119,8 @@ class CalculateFragment : Fragment() {
                 }catch (ex:Exception){
                     0
                 })
+                setCurrenciesAdapter(currencies)
             }
-
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -145,10 +140,14 @@ class CalculateFragment : Fragment() {
     }
 
 
-    private fun setCurrenciesAdapter(){
+    private fun setCurrenciesAdapter(currencies: HashMap<String, Double>){
+        val listOfCurrenciesSymbols = arrayListOf<String>()
+        for(symbol in currencies.keys){
+            listOfCurrenciesSymbols.add(symbol)     //GET ALL CURRENCIES SYMBOLS
+        }
         calculateRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CalculateCurrenciesAdapter()
+            adapter = CalculateCurrenciesAdapter(currencies,listOfCurrenciesSymbols)
         }
     }
 
