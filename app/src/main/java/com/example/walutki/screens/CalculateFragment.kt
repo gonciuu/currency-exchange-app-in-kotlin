@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walutki.R
 import com.example.walutki.screens.adapters.calculate_currencies.CalculateCurrenciesAdapter
@@ -41,9 +42,13 @@ class CalculateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingViewModel = ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
         finalValue.isSelected = true
+        setBackButton()
         getCurrencies()
         setDate()
     }
+
+
+    private fun setBackButton() = goBackButton.setOnClickListener { findNavController().navigate(R.id.action_calculateFragment_to_valuesFragment)}
 
 
     private fun getCurrencies() {

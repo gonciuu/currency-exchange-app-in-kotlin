@@ -14,7 +14,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/goBackButton"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_marginStart="28dp"
