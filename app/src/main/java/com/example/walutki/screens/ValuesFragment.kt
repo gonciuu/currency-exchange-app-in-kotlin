@@ -78,6 +78,8 @@ class ValuesFragment : Fragment() {
     //===============================================================================================================================================
 
 
+    //---------------------------------------------------SETUP SPINNER AND CHANGE ADAPTER IF SPINNER ITEM WAS SELECTED ON ANOTHER---------------------------------------------------
+
     private fun setSpinnerAdapter(currencies: HashMap<String, Double>, lastCurrencies: HashMap<String, Double>, likedList: ArrayList<String>, sp: SharedPreferences){
         currencyNameSpinner.adapter = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item,currencies.keys.toList())
         setSpinnerOnClickItem(currencies,lastCurrencies, likedList, sp)
@@ -93,5 +95,7 @@ class ValuesFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
+    
+    //===============================================================================================================================================================================
 
 }
