@@ -21,7 +21,9 @@
         tools:layout="@layout/fragment_calculate" >
         <action
             android:id="@+id/action_calculateFragment_to_valuesFragment"
-            app:destination="@id/valuesFragment" />
+            app:destination="@id/valuesFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/loadingFragment"
@@ -30,6 +32,8 @@
         tools:layout="@layout/loading_fragment" >
         <action
             android:id="@+id/action_loadingFragment_to_valuesFragment"
-            app:destination="@id/valuesFragment" />
+            app:destination="@id/valuesFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
