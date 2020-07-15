@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_values" >
         <action
             android:id="@+id/action_valuesFragment_to_calculateFragment"
-            app:destination="@id/calculateFragment" />
+            app:destination="@id/calculateFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/calculateFragment"
@@ -23,7 +27,11 @@
             android:id="@+id/action_calculateFragment_to_valuesFragment"
             app:destination="@id/valuesFragment"
             app:popUpTo="@id/app_nav"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/loadingFragment"
@@ -34,6 +42,10 @@
             android:id="@+id/action_loadingFragment_to_valuesFragment"
             app:destination="@id/valuesFragment"
             app:popUpTo="@id/app_nav"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>
