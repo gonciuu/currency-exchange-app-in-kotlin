@@ -4,12 +4,12 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -88,7 +88,7 @@ class ValuesFragment : Fragment() {
 
     private fun setSpinnerOnClickItem(currencies: HashMap<String, Double>, lastCurrencies: HashMap<String, Double>, likedList: ArrayList<String>, sp: SharedPreferences){
         currencyNameSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setAdapter(currencies,lastCurrencies,likedList,sp,selectedItem)
             }

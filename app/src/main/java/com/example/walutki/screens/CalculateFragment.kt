@@ -79,7 +79,7 @@ class CalculateFragment : Fragment() {
 
     private fun setSpinnersOnClick(currencies: HashMap<String, Double>) {
         firstCurrentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setFlagImage(selectedItem, firstCurrentFlag)//set flag image next to spinner
                 setCurrentValue(currencies[selectedItem]!!,currencies[secondCurrentSpinner.selectedItem.toString()]!!)      //calculate currenct global value
@@ -89,7 +89,7 @@ class CalculateFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         secondCurrentSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 setFlagImage(selectedItem, secondCurrentFlag)
                 setCurrentValue(currencies[firstCurrentSpinner.selectedItem.toString()]!!,currencies[selectedItem]!!)

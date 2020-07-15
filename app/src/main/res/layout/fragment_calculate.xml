@@ -33,10 +33,10 @@
 
             <ImageView
                 android:id="@+id/firstCurrentFlag"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="52dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="2dp"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintEnd_toStartOf="@+id/firstCurrentValue"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -45,10 +45,10 @@
 
             <ImageView
                 android:id="@+id/secondCurrentFlag"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toStartOf="@+id/finalValue"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -57,8 +57,8 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_back"
                 android:background="@drawable/rounded_rectangle_bg"
                 android:padding="6dp"
@@ -74,7 +74,7 @@
 
             <EditText
                 android:id="@+id/firstCurrentValue"
-                android:layout_width="50dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/m_regular"
@@ -93,7 +93,7 @@
 
             <TextView
                 android:id="@+id/finalValue"
-                android:layout_width="50dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:ellipsize="marquee"
@@ -121,7 +121,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/firstCurrentValue"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
                 app:layout_constraintHorizontal_bias="0.5"
-                android:layout_marginEnd="5dp"
                 app:layout_constraintStart_toEndOf="@+id/firstCurrentValue"
                 app:layout_constraintTop_toTopOf="@+id/firstCurrentValue" />
 
