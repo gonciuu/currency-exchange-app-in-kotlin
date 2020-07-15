@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -51,6 +52,7 @@ class ValuesFragment : Fragment() {
                     Log.d("ALERT",likedList.toString())
                     Log.d("ALERT",last["PLN"].toString())
                     setAdapter(arleady,last,likedList,requireActivity().getSharedPreferences("LIKED", MODE_PRIVATE))
+                    setSpinnerAdapter(arleady)
                 })
         })
     }
@@ -69,16 +71,14 @@ class ValuesFragment : Fragment() {
         currentRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter =
-                CurrenciesAdapter(
-                    context,
-                    currencies,
-                    lastCurrencies,
-                    listOfCurrenciesSymbols,
-                    likedList,
-                    sp
-                )
+                CurrenciesAdapter(context, currencies, lastCurrencies, listOfCurrenciesSymbols, likedList, sp)
         }
     }
     //===============================================================================================================================================
+
+
+    private fun setSpinnerAdapter(currencies: HashMap<String, Double>){
+        currencyNameSpinner.adapter = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item,currencies.keys.toList())
+    }
 
 }

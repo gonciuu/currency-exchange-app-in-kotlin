@@ -16,11 +16,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_back" />
+                android:tint="@color/green"
+                android:src="@drawable/ic_money_exchange" />
 
 
             <LinearLayout
@@ -41,6 +42,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <Spinner
+                    android:id="@+id/currencyNameSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -67,18 +69,17 @@
                     android:textColor="@color/green"
                     android:textSize="20sp" />
 
-                <EditText
+                <ImageView
                     android:layout_width="0dp"
+                    android:paddingRight="20dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_search"
-                    android:drawablePadding="20dp"
-                    android:fontFamily="@font/m_regular"
-                    android:maxLines="1"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textAlignment="textEnd"
+                    android:enabled="false"
+                    android:tint="@color/green"
+                    android:scaleType="fitEnd"
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_money_exchange"
                     android:textColor="@color/dark_gray"
                     android:textSize="22sp" />
             </LinearLayout>
