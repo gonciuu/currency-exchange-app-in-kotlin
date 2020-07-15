@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.walutki.R
 import com.example.walutki.currencies_from_api.retrofit.RetrofitClient
+import com.example.walutki.dialogs.ShowMessageDialog
 import com.example.walutki.screens.view_models.LoadingViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -76,8 +77,12 @@ class LoadingFragment : Fragment() {
                 }
             }catch (socketEx: SocketTimeoutException){
                 Log.d("Error","Check your internet connection")        //no internet connection
+                ShowMessageDialog("Intenet","Proszę sprawdzić swoje połączenie z siecią i spróbować ponownie później!").show(requireActivity().supportFragmentManager,"internet_error_tag")
+            }catch (unEx:java.net.UnknownHostException){
+                Log.d("Error","Check your internet connection. ")
+                ShowMessageDialog("Intenet","Proszę sprawdzić swoje połączenie z siecią i spróbować ponownie później!").show(requireActivity().supportFragmentManager,"internet_error_tag2")
             }catch (ex:Exception){
-                Log.d("Error","Check your internet connection. Error ${ex.message}")
+                ShowMessageDialog("Error","Wystąpił nieoczekiwany błąd. Spróbuj ponownie później. ${ex.message}").show(requireActivity().supportFragmentManager,"error_tag")
             }
         }
     }
