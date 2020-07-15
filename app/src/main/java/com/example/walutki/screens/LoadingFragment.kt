@@ -95,7 +95,7 @@ class LoadingFragment : Fragment() {
     private fun getYesterday() : String{
         val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         val cal: Calendar = Calendar.getInstance()
-        cal.add(Calendar.DATE, - 1)
+        cal.add(Calendar.DATE, - 2)
         return dateFormat.format(cal.time)
     }
     //====================================================================
