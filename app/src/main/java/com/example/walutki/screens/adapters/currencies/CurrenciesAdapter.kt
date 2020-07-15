@@ -17,12 +17,15 @@ import com.squareup.picasso.Picasso
 import kotlin.math.abs
 
 
-class CurrenciesAdapter(private val context: Context,
-                        private val currencies:HashMap<String,Double>,
-                        private val lastCurrencies:HashMap<String,Double>,
-                        private val listOfCurrenciesSymbols:ArrayList<String>,
-                        private val likedList:ArrayList<String>,
-                        private val sp:SharedPreferences) : RecyclerView.Adapter<CurrenciesViewHolder>() {
+class CurrenciesAdapter(
+    private val context: Context,
+    private val currencies: HashMap<String, Double>,
+    private val lastCurrencies: HashMap<String, Double>,
+    private val listOfCurrenciesSymbols: ArrayList<String>,
+    private val likedList: ArrayList<String>,
+    private val sp: SharedPreferences,
+    private val currencySet: String
+) : RecyclerView.Adapter<CurrenciesViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrenciesViewHolder {
@@ -39,16 +42,24 @@ class CurrenciesAdapter(private val context: Context,
     override fun onBindViewHolder(holder: CurrenciesViewHolder, position: Int) {
 
         holder.currentName.text = listOfCurrenciesSymbols[holder.adapterPosition]
-        holder.currentValue.text  = String.format("%.4f",currencies[listOfCurrenciesSymbols[holder.adapterPosition]])
-        Picasso.get().load("https://www.countryflags.io/${listOfCurrenciesSymbols[holder.adapterPosition][0] + "" + listOfCurrenciesSymbols[holder.adapterPosition][1]}/flat/64.png").into(holder.countryImage)
+        holder.currentValue.text = String.format("%.4f", currencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! / currencies[currencySet]!!)
+        Picasso.get()
+            .load("https://www.countryflags.io/${listOfCurrenciesSymbols[holder.adapterPosition][0] + "" + listOfCurrenciesSymbols[holder.adapterPosition][1]}/flat/64.png")
+            .into(holder.countryImage)
 
         //---------------------------SHOW PERCENT DIFFERENT BETWEEN TODAY AND YESTERDAY DATA-----------------------------
 
-        val different = 100 - (lastCurrencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! * 100) / (currencies[listOfCurrenciesSymbols[holder.adapterPosition]]!!)
+        val different = 100 - (lastCurrencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! /lastCurrencies[currencySet]!! * 100) / (currencies[listOfCurrenciesSymbols[holder.adapterPosition]]!! / currencies[currencySet]!!)
         when {
-            different>0 -> {holder.currentPercent.setTextColor(Color.parseColor("#db0f00"))}
-            different<0 -> {holder.currentPercent.setTextColor(Color.parseColor("#00e81f"))}
-            else -> {holder.currentPercent.setTextColor(Color.parseColor("#0092db"))}
+            different > 0 -> {
+                holder.currentPercent.setTextColor(Color.parseColor("#db0f00"))
+            }
+            different < 0 -> {
+                holder.currentPercent.setTextColor(Color.parseColor("#00e81f"))
+            }
+            else -> {
+                holder.currentPercent.setTextColor(Color.parseColor("#0092db"))
+            }
         }
         holder.currentPercent.text = String.format("%.2f", abs(different)) + "%"
 
@@ -56,18 +67,21 @@ class CurrenciesAdapter(private val context: Context,
 
         //-----------------------------SET START SYMBOLS BASED ON LIKED LIST FROM SHARED PREFS-----------------------------
 
-        if(likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])){ holder.starIcon.setImageResource(R.drawable.ic_star) }
-        else{ holder.starIcon.setImageResource(R.drawable.ic_star_border) }
+        if (likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])) {
+            holder.starIcon.setImageResource(R.drawable.ic_star)
+        } else {
+            holder.starIcon.setImageResource(R.drawable.ic_star_border)
+        }
 
         //=================================================================================================================
 
         //----------------------------------CHANGE STAR ICON ON CLICK AND SAVE NEW LIST IN SHARED PREFS------------------------------
-        holder.starIcon.setOnClickListener{
-            if(likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])){
-                imageViewAnimatedChange(context,holder.starIcon,R.drawable.ic_star_border)
+        holder.starIcon.setOnClickListener {
+            if (likedList.contains(listOfCurrenciesSymbols[holder.adapterPosition])) {
+                imageViewAnimatedChange(context, holder.starIcon, R.drawable.ic_star_border)
                 likedList.remove(listOfCurrenciesSymbols[holder.adapterPosition])
-            }else{
-                imageViewAnimatedChange(context,holder.starIcon,R.drawable.ic_star)
+            } else {
+                imageViewAnimatedChange(context, holder.starIcon, R.drawable.ic_star)
                 likedList.add(listOfCurrenciesSymbols[holder.adapterPosition])
             }
             sp.edit().apply {
@@ -78,7 +92,6 @@ class CurrenciesAdapter(private val context: Context,
         //============================================================================================================================
 
     }
-
 
 
     //---------------------FADE IN - FADE OUT ANIMATION ON IMAGE VIEW-------------------------
